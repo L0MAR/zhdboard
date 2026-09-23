@@ -1043,10 +1043,18 @@ export default {
     data: new SlashCommandBuilder()
         .setName('embedbuilder')
         .setDescription('Build and post a fully custom embed with live preview')
-        .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
+        .setDefaultMemberPermissions(null),
+   async execute(interaction) {
+    const STAFF_ROLE_ID = '1496224262338646166';
 
-    async execute(interaction) {
-        try {
+    if (!interaction.member.roles.cache.has(STAFF_ROLE_ID)) {
+        return interaction.reply({
+            content: 'You do not have permission to use this command.',
+            ephemeral: true
+        });
+    }
+
+    try {
             const deferSuccess = await InteractionHelper.safeDefer(interaction, {
                 flags: MessageFlags.Ephemeral,
             });
