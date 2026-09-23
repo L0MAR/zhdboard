@@ -152,16 +152,16 @@ export async function getLevelingConfig(client, guildId) {
     const guildConfig = await getGuildConfig(client, guildId);
     return guildConfig.leveling || {
       enabled: false,
-      xpPerMessage: { min: 15, max: 25 },
-      xpCooldown: 20,
+      xpPerMessage: { min: 0, max: 0 },
+      xpCooldown: 0,
       levelUpMessage: '{user} has leveled up to level {level}!',
-      levelUpChannel: null,
+      levelUpChannel: '1510513536333244589',
       ignoredChannels: [],
       ignoredRoles: [],
       blacklistedUsers: [],
       roleRewards: {},
       announceLevelUp: false,
-      xpMultiplier: 1
+      xpMultiplier: 0
     };
   } catch (error) {
     logger.error(`Error getting leveling config for guild ${guildId}:`, error);
